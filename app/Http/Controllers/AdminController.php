@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -19,7 +20,7 @@ class AdminController extends Controller
     
     public function orders(){
         $orders = Order::with('orderItems.menu')->latest()->get();
-        return view(admin.orders, compact('orders'));
+        return view('admin.orders', compact('orders'));
     }
     
     public function showOrder(Order $order){

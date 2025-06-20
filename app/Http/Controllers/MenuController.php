@@ -13,7 +13,7 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::all()->groupBy('category');
-        return view('menu',compact('menu'));
+        return view('menu',compact('menus'));
     }
 
     /**

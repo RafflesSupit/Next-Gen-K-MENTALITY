@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->string('image')->nullable();
-            $table->string('category');
+            $table->string('customer_name');
+            $table->string('table_number');
+            $table->decimal('total_amount', 10, 2);
+            $table->enum('status', ['pending', 'preparing', 'served', 'completed'])->default('pending');
+            $table->timestamp('order_date');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('orders');
     }
 };
