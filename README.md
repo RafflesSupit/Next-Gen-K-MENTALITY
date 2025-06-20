@@ -75,9 +75,9 @@ Sistem pemesanan makanan untuk restoran **Maison Étoile**, dibangun menggunakan
 
 ## 🖼️ Screenshot Landing Page
 
-> Simpan file screenshot di `public/screenshots/landing-page.png`, lalu tampilkan di bawah ini:
+> Screenshot preview:
 
-![Landing Page](screenshots/landing-page.png)
+![Landing Page](public/img/landing-page.png)
 
 ---
 
