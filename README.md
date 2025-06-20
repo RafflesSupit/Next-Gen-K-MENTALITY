@@ -86,5 +86,5 @@ Sistem pemesanan makanan untuk restoran **Maison Étoile**, dibangun menggunakan
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/username/maison-etoile.git
-cd maison-etoile
+git clone [https://github.com/RafflesSupit/Next-Gen-K-MENTALITY.git]
+cd Next-Gen-K-MENTALITY
