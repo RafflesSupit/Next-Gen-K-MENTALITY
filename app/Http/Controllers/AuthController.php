@@ -9,22 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -32,56 +21,48 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            if(Auth::user()->role === "admin"){
+            
+            if (Auth::user()->isAdmin()) {
                 return redirect()->route('admin.dashboard');
             }
+            
             return redirect()->route('home');
         }
 
         return back()->withErrors([
-            'email'=>'Login gagal'
+            'email' => 'Login gagal.',
         ]);
-        
     }
 
     public function showRegisterForm()
     {
-        //
         return view('auth.register');
     }
-
 
     public function register(Request $request)
     {
         $request->validate([
-            'name'=> 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'nullable|min:6|confirmed',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-
-        $role = User::count() === 0 ? 'admin':'customer';
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $role,
         ]);
 
         return redirect()->route('login');
     }
 
-    
     public function logout(Request $request)
     {
-        //
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect ()->route('home');
+        return redirect()->route('home');
     }
-
-    
 }

@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
-@section('title', 'Menu - Warung Makan Berkah')
+@section('title', 'Menu - Maison Étoile')
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Menu Kami</h1>
+    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Our Menus</h1>
     
     @auth
         <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <!-- Tombol Pesan Sekarang - untuk semua user yang login -->
             <a href="{{ route('order.create') }}" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-200 text-center">
-                Pesan Sekarang
+                Order Now
             </a>
             
             <!-- Tombol Tambah Menu - hanya untuk admin -->
             @if(Auth::user()->role === 'admin')
                 <a href="{{ route('admin.menu.create') }}" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-200 text-center">
-                    Tambah Menu
+                    Add Menu
                 </a>
             @endif
         </div>
@@ -38,21 +38,21 @@
                 <div class="p-4">
                     <h3 class="font-bold text-lg mb-2">{{ $menu->name }}</h3>
                     <p class="text-gray-600 text-sm mb-2">{{ $menu->description }}</p>
-                    <p class="text-orange-500 font-bold text-lg">Rp {{ number_format($menu->price, 0, ',', '.') }}</p>
+                    <p class="text-orange-500 font-bold text-lg">$ {{ number_format($menu->price, 0, ',', '.') }}</p>
                     @auth
                         @if(Auth::user()->role === 'admin')
                             <div class="flex space-x-2 mt-4">
                                 {{-- Tombol Edit --}}
                                 <a href="{{ route('admin.menu.edit', $menu->id) }}" class="text-blue-500 hover:underline">
-                                    🖊️ Edit
+                                    Edit
                                 </a>
 
                                 {{-- Tombol Hapus --}}
-                                <form action="{{ route('admin.menu.delete', $menu->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus menu ini?')">
+                                <form action="{{ route('admin.menu.delete', $menu->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this menu?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:underline">
-                                        🗑️ Hapus
+                                        Delete
                                     </button>
                                 </form>
                             </div>
@@ -65,7 +65,7 @@
     </div>
     @empty
     <div class="text-center">
-        <p class="text-gray-500">Belum ada menu tersedia</p>
+        <p class="text-gray-500">There are no menus available yet</p>
     </div>
     @endforelse
 </div>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Kelola Pesanan - Admin')
+@section('title', 'Manage Order - Admin')
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold">Daftar Pesanan</h1>
+        <h1 class="text-3xl font-bold">Order List</h1>
         <a href="{{ route('admin.dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
-            Kembali ke Dashboard
+            Back to Dashboard
         </a>
     </div>
     
@@ -16,12 +16,12 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pelanggan</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Meja</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Table</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -30,7 +30,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ $order->id }}</td>
                     <td class="px-6 py-4 whitespace-nowrap font-medium">{{ $order->customer_name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $order->table_number }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">$ {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <form method="POST" action="{{ route('admin.orders.update', $order) }}" class="inline">
                             @csrf
@@ -47,17 +47,17 @@
                         {{ $order->order_date->format('d/m/Y H:i') }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <a href="{{ route('admin.orders.show', $order) }}" class="text-blue-600 hover:text-blue-900 mr-2">Detail</a>
-                        <form method="POST" action="{{ route('admin.orders.delete', $order) }}" class="inline" onsubmit="return confirm('Yakin hapus pesanan ini?')">
+                        <a href="{{ route('admin.orders.show', $order) }}" class="text-blue-600 hover:text-blue-900 mr-2">Details</a>
+                        <form method="POST" action="{{ route('admin.orders.delete', $order) }}" class="inline" onsubmit="return confirm('Are you sure you want to delete this order?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
+                            <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
                         </form>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class="px-6 py-4 text-center text-gray-500">Tidak ada pesanan</td>
+                    <td colspan="7" class="px-6 py-4 text-center text-gray-500">No orders</td>
                 </tr>
                 @endforelse
             </tbody>

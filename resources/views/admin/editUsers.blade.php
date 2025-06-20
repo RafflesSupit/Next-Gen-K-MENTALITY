@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Pengguna')
+@section('title', 'Edit User')
 
 @section('content')
 <div class="max-w-lg mx-auto mt-10 bg-white p-8 rounded shadow">
@@ -28,7 +28,7 @@
     @endif
 
     <a href="{{ route('admin.users') }}" class="text-sm text-blue-600 hover:underline mb-4 inline-block">
-        ← Kembali ke Daftar Pengguna
+        ← Back to User List
     </a>
 
     <form action="{{ route('admin.user.update', $user->id) }}" method="POST" enctype="multipart/form-data">

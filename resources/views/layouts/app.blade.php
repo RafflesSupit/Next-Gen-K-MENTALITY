@@ -11,7 +11,7 @@
     <nav class="bg-white shadow-md">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <a href="{{ route('home') }}" class="text-xl font-bold text-gray-800">Warung Berkah</a>
+                <a href="{{ route('home') }}" class="text-xl font-bold text-gray-800">Maison Étoile</a>
                 
                 <div class="flex items-center space-x-4">
                     <!-- Menu Desktop (hidden di mobile) -->
@@ -39,7 +39,6 @@
 
                         <div id="profile-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                             <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
-                            {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a> --}}
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Logout</button>
@@ -65,7 +64,7 @@
                     @else
                         <a href="{{ route('order.create') }}" class="block px-2 py-1 text-green-600 hover:text-green-800">Order</a>
                     @endif
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
+                    <a href="{{route('profile.edit')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="block px-2 py-1 text-red-600 hover:text-red-800 text-left w-full">Logout</button>

@@ -37,7 +37,7 @@ class OrderController extends Controller
         }
         
         if (empty($validItems)) {
-            return back()->withErrors(['quantities' => 'Pilih minimal 1 menu dengan quantity > 0']);
+            return back()->withErrors(['quantities' => 'Choose at least 1 menu with quantity > 0']);
         }
         
         foreach ($validItems as $item) {
@@ -62,6 +62,6 @@ class OrderController extends Controller
             ]);
         }
 
-        return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
+        return redirect()->route('home')->with('success', 'Order successfully created.');
     }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Kelola Pengguna - Admin')
+@section('title', 'Manage User - Admin')
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold">Daftar Pengguna</h1>
+        <h1 class="text-3xl font-bold">User List</h1>
         <a href="{{ route('admin.dashboard') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
-            Kembali ke Dashboard
+            Back to Dashboard
         </a>
     </div>
     
@@ -16,11 +16,11 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Terdaftar</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Registered</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -58,7 +58,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">Tidak ada pengguna</td>
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">No User</td>
                 </tr>
                 @endforelse
             </tbody>
